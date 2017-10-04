@@ -1,0 +1,19 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId 'com.nilhcem.androidthings.driver.lcdpcf8574.sample'
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName '1.0'
+    }
+}
+
+dependencies {
+    compileOnly rootProject.ext.dependencies['androidthings']
+    implementation project(':driver-lcd-pcf8574')
+}
