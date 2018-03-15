@@ -13,7 +13,7 @@ Here using an LCD1602 with a LCM1602 I2C module
 
 ```groovy
 dependencies {
-    compile 'com.nilhcem.androidthings:driver-lcd-pcf8574:0.0.1'
+    compile 'com.nilhcem.androidthings:driver-lcd-pcf8574:0.0.2'
 }
 ```
 

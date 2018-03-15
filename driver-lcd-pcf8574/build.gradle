@@ -28,7 +28,7 @@ publish {
     userOrg = 'nilhcem'
     groupId = 'com.nilhcem.androidthings'
     artifactId = 'driver-lcd-pcf8574'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     desc = 'Android Things driver for LCDs with a PCF8574 I2C adapter.'
     website = 'https://github.com/Nilhcem/lcd-pcf8574-androidthings'
 }
