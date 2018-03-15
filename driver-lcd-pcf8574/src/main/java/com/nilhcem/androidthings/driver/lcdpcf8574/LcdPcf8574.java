@@ -3,7 +3,7 @@ package com.nilhcem.androidthings.driver.lcdpcf8574;
 import android.util.Log;
 
 import com.google.android.things.pio.I2cDevice;
-import com.google.android.things.pio.PeripheralManagerService;
+import com.google.android.things.pio.PeripheralManager;
 
 import java.io.IOException;
 
@@ -74,7 +74,7 @@ public class LcdPcf8574 implements AutoCloseable {
     private I2cDevice device;
 
     public LcdPcf8574(String i2cName, int i2cAddress) throws IOException {
-        PeripheralManagerService manager = new PeripheralManagerService();
+        PeripheralManager manager = PeripheralManager.getInstance();
         device = manager.openI2cDevice(i2cName, i2cAddress);
     }
 
