@@ -8,7 +8,7 @@ import com.google.android.things.pio.PeripheralManager;
 import java.io.IOException;
 
 /**
- * Inspired from `https://github.com/mathertel/LiquidCrystal_PCF8574/tree/master/src`
+ * Inspired from {@code https://github.com/mathertel/LiquidCrystal_PCF8574/tree/master/src}
  */
 public class LcdPcf8574 implements AutoCloseable {
 
