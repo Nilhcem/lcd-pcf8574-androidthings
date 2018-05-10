@@ -1,0 +1,19 @@
+{
+  "title": "PCF8574",
+  "category": "LCD Display",
+  "samples": [
+    "https://github.com/Nilhcem/lcd-pcf8574-androidthings/tree/master/sample"
+  ],
+  "published-maven": {
+    "maven-url": "https://jcenter.bintray.com",
+    "groupid": "com.nilhcem.androidthings",
+    "artifactid": "driver-lcd-pcf8574"
+  },
+  "compatible-with": [
+    {
+      "title": "LCD1602 with PCF8574 I2C Adapter",
+      "photo": "https://raw.githubusercontent.com/Nilhcem/lcd-pcf8574-androidthings/master/assets/photo2.jpeg",
+      "url": "https://aliexpress.com/wholesale?SearchText=pcf8574+lcd"
+    }
+  ]
+}
