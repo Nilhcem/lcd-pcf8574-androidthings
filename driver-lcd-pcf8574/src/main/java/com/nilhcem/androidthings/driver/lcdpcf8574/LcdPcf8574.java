@@ -65,6 +65,7 @@ public class LcdPcf8574 implements AutoCloseable {
     private int pcfBacklight = 0x08;
 
     private boolean backlight; // use backlight
+    private boolean backlightActiveLow; // the backlight polarity. If true, the backlight is active on low signal.
 
     private byte displayFunction; // lines and dots mode
     private byte displayControl; // cursor, display, blink flags
@@ -79,11 +80,13 @@ public class LcdPcf8574 implements AutoCloseable {
         device = manager.openI2cDevice(i2cName, i2cAddress);
     }
 
-    public void init(int pcfRs, int pcfRw, int pcfEn, int pcfBacklight) {
+    public void init(int pcfRs, int pcfRw, int pcfEn, int pcfBacklight, boolean backlightActiveLow) {
         this.pcfRs = pcfRs;
         this.pcfRw = pcfRw;
         this.pcfEn = pcfEn;
         this.pcfBacklight = pcfBacklight;
+
+        this.backlightActiveLow = backlightActiveLow;
     }
 
     @Override
@@ -295,7 +298,7 @@ public class LcdPcf8574 implements AutoCloseable {
         if (mode > 0) i2cData |= pcfRs;
         // PCF_RW is never used.
         if (enable) i2cData |= pcfEn;
-        if (backlight) i2cData |= pcfBacklight;
+        if (backlight ^ backlightActiveLow) i2cData |= pcfBacklight;
 
         device.write(new byte[]{i2cData}, 1);
     }
