@@ -52,16 +52,17 @@ public class LcdPcf8574 implements AutoCloseable {
 
     private static final int LOW = 0x0;
 
-    // These are Bit-Masks for the special signals and background light
-    private static final int PCF_RS = 0x01;
-    private static final int PCF_RW = 0x02;
-    private static final int PCF_EN = 0x04;
-    private static final int PCF_BACKLIGHT = 0x08;
-
     // Definitions on how the PCF8574 is connected to the LCD
     // These are Bit-Masks for the special signals and Background
     private static final int RSMODE_CMD = 0;
     private static final int RSMODE_DATA = 1;
+
+    // These are Bit-Masks for the special signals and background light
+    // They are filled with default values but can be changed via the init method.
+    private int pcfRs = 0x01;
+    private int pcfRw = 0x02;
+    private int pcfEn = 0x04;
+    private int pcfBacklight = 0x08;
 
     private boolean backlight; // use backlight
 
@@ -76,6 +77,13 @@ public class LcdPcf8574 implements AutoCloseable {
     public LcdPcf8574(String i2cName, int i2cAddress) throws IOException {
         PeripheralManager manager = PeripheralManager.getInstance();
         device = manager.openI2cDevice(i2cName, i2cAddress);
+    }
+
+    public void init(int pcfRs, int pcfRw, int pcfEn, int pcfBacklight) {
+        this.pcfRs = pcfRs;
+        this.pcfRw = pcfRw;
+        this.pcfEn = pcfEn;
+        this.pcfBacklight = pcfBacklight;
     }
 
     @Override
@@ -284,10 +292,10 @@ public class LcdPcf8574 implements AutoCloseable {
     private void write2Wire(byte halfByte, int mode, boolean enable) throws IOException {
         // map the given values to the hardware of the I2C schema
         byte i2cData = (byte) (halfByte << 4);
-        if (mode > 0) i2cData |= PCF_RS;
+        if (mode > 0) i2cData |= pcfRs;
         // PCF_RW is never used.
-        if (enable) i2cData |= PCF_EN;
-        if (backlight) i2cData |= PCF_BACKLIGHT;
+        if (enable) i2cData |= pcfEn;
+        if (backlight) i2cData |= pcfBacklight;
 
         device.write(new byte[]{i2cData}, 1);
     }
